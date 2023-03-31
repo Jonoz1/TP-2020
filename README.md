@@ -1,7 +1,7 @@
 # Titanium Plates Theme 2020
 This is a modified version of the Titanium Plates Theme for Racing League Tools for F1 2020.
 
-I created this for my F1 2020 driver career but if you want to use it go ahead.
+I modified the original theme for my F1 2020 driver career but if you want to use it go ahead.
 
 **__I do not own any of the original assets or code of this theme. All credit goes to Caccia and kaaac for creating and developing the original theme: https://github.com/kaaac/Titanium-Plates-Theme/__**
 
