@@ -1,0 +1,235 @@
+{
+    "Name": "headerBlock",
+    "BlockType": "dock",
+    "Orientation": "Horizontal",
+    "HorizontalAlignment" : "Center",
+    "Padding" : "{HeaderPadding}",
+    "Items": [
+        {
+            "Name": "headerLeftpart",
+            "BlockType": "stack",
+            "Orientation": "Horizontal",
+            "HorizontalAlignment" : "Left",
+            "Spacing": 8,
+            "Items": [
+                {
+                    "Name": "CountryFlag",
+                    "BlockType": "image",
+                    "VerticalAlignment": "Top",
+                    "Height": 105,
+                    "MarginTop" : 25,
+                    "Source": "images/flags/flag_{Session.Track.Nation.Code}.png"
+                },
+                {
+                    "Name": "CountryRightStack",
+                    "BlockType": "stack",
+                    "Orientation": "Vertical",
+                    "HorizontalAlignment" : "Left",
+                    "VerticalAlignment": "Top",
+                    "MarginTop" : 8,
+                    "Items": [
+                        {
+                            "Name": "LocationName",
+                            "BlockType": "text",
+                            "HorizontalAlignment" : "Left",
+                            "MarginTop" : 12,
+                            "FontSize" : 50,
+                            "Foreground" : "#ffffffff",//"{HeaderForeground}",
+                            "FontName" : "{FontNameBold}",
+                            "Source": "{Session.Track.CircuitName}",
+                            "TextOptionsExtern": "locationName"
+                        },
+                        {
+                            "Name": "CountryName",
+                            "BlockType": "text",
+                            "HorizontalAlignment" : "Left",
+                            "FontSize" : 50,
+                            "MarginRight" : 15,
+                            "Foreground" : "{HeaderForeground}",
+                            "FontName" : "{FontNameDefault}",
+                            "Source": "{Session.Track.CountryName}",
+                            "TextOptionsExtern": "countryName"
+                        }
+                        
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "headerCenterPart",
+            "BlockType": "stack",
+            "Orientation": "Horizontal",
+            "HorizontalAlignment" : "Center",
+            "MarginTop" : 15,
+            "Spacing": 8,
+            "Items": [
+                {
+                    "Name": "leagueLogo",
+                    "BlockType": "image",
+                    "VerticalAlignment" : "Top",
+                    "Height": 145,
+                    "MarginTop": -10,
+                    "MarginLeft": 36,
+                    "Source": "{Season.LeagueInfo.LeagueLogo}"
+                },
+                {
+                    "Name" : "middleheader",
+                    "BlockType":"stack",
+                    "Orientation" : "Vertical",
+                    "HorizontalAlignment" : "Center",
+                    "Items" :[
+                        {
+                            "BlockType" : "text",
+                            "FontSize" : 60,
+                            "Foreground" : "{HeaderForeground}",
+                            "FontName" : "{FontNameBold}",
+                            "VerticalAlignment" : "Top",
+                            "HorizontalAlignment" : "Center",
+                            "Source" : "{Season.Name}"
+                        },
+                        {
+                            "BlockType" : "text",
+                            "FontSize" : 40,
+                            "Foreground" : "{HeaderForeground}",
+                            "FontName" : "{FontNameBold}",
+                            "VerticalAlignment" : "Top",
+                            "HorizontalAlignment" : "Center",
+                            "Source" : "{Season.LeagueInfo.LeagueFullName}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "headerRightPart",
+            "BlockType": "stack",
+            "MarginLeft" : 56,
+            "MarginTop" : 20,
+            "Orientation": "Vertical",
+            "HorizontalAlignment": "Right",
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Items": [
+                        {
+                            "BlockType": "stack",
+                            "Orientation": "Vertical",
+                            "Spacing": 8,
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "HorizontalAlignment": "Right",
+                                    "Source": "[Round] {Event.Position} [of] {Season.SeasonOverallNumberEvents}",
+                                    "FontName": "{FontNameDefault}",
+                                    "FontSize": "{FontSizeRightPart}",
+                                    "Foreground": "{HeaderForeground}"
+                                },
+
+                                {
+                                    "BlockType": "stack",
+                                    "HorizontalAlignment": "Right",
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Source": "[{Session.SessionType}]",
+                                            "FontName": "{FontNameDefault}",
+                                            "FontSize": "{FontSizeRightPart}",
+                                            "Foreground": "{HeaderForeground}",
+                                        },
+                                        {
+                                            "BlockType": "text",                                            
+                                            "RenderIf": false,
+                                            "Source": " • {Session.TotalLaps} [laps]",
+                                            "FontName": "{FontNameDefault}",
+                                            "FontSize": "{FontSizeRightPart}",
+                                            "Foreground": "{HeaderForeground}",
+                                            "Triggers" : 
+                                            [
+                                                {
+                                                    "Condition" : "{Session.IsLiveData}",
+                                                    "ConditionAnd" : "{Session.SessionType, Converter=StringEquals, Parameter=Race}",
+                                                    "Property" : "RenderIf",
+                                                    "Value" : true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "text",                                                                                  
+                                            "RenderIf": false,
+                                            "Source": " • {Session.SessionDurationMinutes} [min].",
+                                            "FontName": "{FontNameDefault}",
+                                            "FontSize": "{FontSizeRightPart}",
+                                            "Foreground": "{HeaderForeground}",
+                                            "Triggers" : 
+                                            [
+                                                {
+                                                    "Condition" : "{Session.IsLiveData}",
+                                                    "ConditionAnd" : "{Session.SessionType, Converter=StringNotEquals, Parameter=Race}",
+                                                    "Property" : "RenderIf",
+                                                    "Value" : true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+
+                                {
+                                    "BlockType": "stack",
+                                    "HorizontalAlignment": "Right",
+                                    "Spacing": 4,
+                                    "Items": [
+                                        {
+                                            "Name": "DummyTextForFixWidth",
+                                            "BlockType": "text",
+                                            "HorizontalAlignment" : "Left",
+                                            "FontSize" : "{FontSizeRightPart}",
+                                            "MarginRight" : 15,
+                                            "Foreground" : "#00000000",
+                                            "FontName" : "{FontNameDefault}",
+                                            "Source": "{Session.Track.CountryName}",
+                                            "TextOptionsExtern": "countryName"
+                                        },
+                                        {
+                                            "Name": "DummyTextForFixWidth2",
+                                            "BlockType": "text",
+                                            "HorizontalAlignment" : "Left",
+                                            "FontSize" : "{FontSizeRightPart, Converter=NumberDivide, Parameter=2}",
+                                            "MarginRight" : 15,
+                                            "Foreground" : "#00000000",
+                                            "FontName" : "{FontNameDefault}",
+                                            "Source": "{Session.Track.CountryName}",
+                                            "TextOptionsExtern": "countryName",
+                                            "Triggers" : [
+                                                {
+                                                    "Condition" : "{Session.IsLiveData, Converter=BoolReverse}",
+                                                    "Property" : "MarginRight",
+                                                    "Value" : "100"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "image",
+                                            "Height": 32,
+                                            "VerticalAlignment": "Center",
+                                            "RenderIf": "{Session.IsLiveData}",
+                                            "Source": "images/weather/weather_{Session.WeatherType}.png"
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "VerticalAlignment": "Center",
+                                            "Source": "{Session.AirTemperatureString}",
+                                            "FontName": "{FontNameDefault}",
+                                            "Foreground": "{HeaderForeground}",
+                                            "RenderIf": "{Session.IsLiveData}",
+                                            "FontSize": "{FontSizeRightPart}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }                    
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,105 @@
+{
+    "BlockType": "dock",
+    "PaddingLeft": 12,
+    "PaddingRight": 4,    
+    "UseBackgroundCrop" : false,
+    "BackgroundImage": "images/Driver_Tyre_v2.png",
+    "Height" : 73,
+    "Triggers" : [
+        {
+            "Condition" : "{F1Mode}",
+            "Property" : "BackgroundImage",
+            "Value" : "images/Driver_Tyre_v2_f1.png"
+        }
+    ],
+    "Items": [
+        {
+            "BlockType": "text",
+            "MaxWidth": 90,
+            "MarginLeft": 0,
+            "MarginBottom" : 0,
+            "PaddingBottom" : 5,
+            "Width" : 50,
+            "Source": "{Item.PositionString}",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Bottom",
+            "FontName" : "{FontNameBold}",
+            "FontSize" : 33,
+            "Foreground" : "#000000",
+            "Triggers" : [
+                {
+                    "Condition" : "{Item.PositionString, Converter=StringEquals, Parameter=3}",
+                    "Property" : "Foreground",
+                    "Value" : "#000000"
+                },
+                {
+                    "Condition" : "{Item.PositionString, Converter=StringEquals, Parameter=2}",
+                    "Property" : "Foreground",
+                    "Value" : "#000000"
+                },
+                {
+                    "Condition" : "{Item.PositionString, Converter=StringEquals, Parameter=1}",
+                    "Property" : "Foreground",
+                    "Value" : "#000000"
+                }
+            ],
+            "TextOptions" : {
+                "HorizontalAlignment" : "Center"
+            }
+        },
+        {
+            "BlockType": "stack",                    
+            "HorizontalAlignment": "Right",
+            "VerticalAlignment": "Bottom",
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{Item.Driver.Name}",
+                    "VerticalAlignment": "Bottom",
+                   "PaddingBottom" : 5,
+                    "FontName" : "{FontNameDefault}",
+                    "FontSize" : 33,
+                    "Foreground" : "#000000",
+                    "TextOptions": {
+                        "HorizontalAlignment": "Right"
+                    }
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",           
+            "MarginRight": 16,
+            "HorizontalAlignment": "Right",
+            "VerticalAlignment": "Bottom",
+            "RenderIf" : "{Item.Team.Name, Converter=EmptyObjectToFalse}",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Source" : "images/cars/{Item.Team.Name}.png",
+                    "MarginLeft" : 12,
+                    "Height": 55,
+                    "MarginRight": 20,
+                    "VerticalAlignment": "Bottom",
+                    "ImageOptions": {
+                        "VerticalAlignment": "Center"
+                    },
+                    "Triggers" : [
+                        {
+                            "Condition" : "{F1Mode, Converter=BoolReverse}",
+                            "Setters" : [
+                                {
+                                    "Property" : "Source",
+                                    "Value" : "{Item.Team.LogoPath}"
+                                },
+                                {
+                                    "Property" : "Height",
+                                    "Value" : "65"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
